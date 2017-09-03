@@ -8,6 +8,12 @@ import denon
 
 __PLUGIN_ID__ = "plugin.audio.denon-dra-f109-remote"
 
+SOURCES = [["analog", "1"],
+           ["analog", "2"],
+           ["optical"], 
+           ["cd"],
+           ["net"]]
+
 settings = xbmcaddon.Addon(id=__PLUGIN_ID__);
 addon_handle = int(sys.argv[1])
 addon_dir = xbmc.translatePath( settings.getAddonInfo('path') )
@@ -108,17 +114,18 @@ def __build_alarm():
 
     return entries
 
+def __build_exec_kodi_stop(source):
+
+    if settings.getSetting("kodi_input_source") == source:
+        return ""
+    else:
+        return "PlayerControl(Stop)"
+    
+
 def __send_kodi():
 
-    sources = [["analog", "1"],
-               ["analog", "2"],
-               ["optical"], 
-               ["cd"],
-               ["net"]]
-
     kodi_input_source = int(settings.getSetting("kodi_input_source"))
-
-    return sources[kodi_input_source]
+    return SOURCES[kodi_input_source]
 
 
 def __build_presets():
@@ -135,6 +142,7 @@ def __build_presets():
                 "name" : settings.getSetting("preset_%s" % str(i)),
                 "icon" : "icon_%s" % (str(i % 10)),
                 "send" : ["macro", "preset", str(i)],
+                "exec" : "PlayerControl(Stop)"
             }
         ]
 
@@ -216,13 +224,15 @@ __menu = [
                 "path" : "fm",
                 "name" : "FM Radio",
                 "icon" : "icon_radio",
-                "send" : ["fm"]
+                "send" : ["fm"],
+                "exec" : "PlayerControl(Stop)"
             },
             { # dab
                 "path" : "dab",
                 "name" : "DAB Radio",
                 "icon" : "icon_dab",
-                "send" : ["dab"]
+                "send" : ["dab"],
+                "exec" : "PlayerControl(Stop)"
             },
             { # presets
                 "path" : "presets",
@@ -263,31 +273,36 @@ __menu = [
                 "path" : "cd",
                 "name" : "CD",
                 "icon" : "icon_cd",
-                "send" : ["cd"]
+                "send" : ["cd"],
+                "exec" : __build_exec_kodi_stop("CD")
             },
             { # net
                 "path" : "net",
                 "name" : "Network",
                 "icon" : "icon_net",
-                "send" : ["net"]
+                "send" : ["net"],
+                "exec" : __build_exec_kodi_stop("Network")
             },
             { # optical
                 "path" : "optical",
                 "name" : "Optical",
                 "icon" : "icon_digital",
-                "send" : ["optical"]
+                "send" : ["optical"],
+                "exec" : __build_exec_kodi_stop("Optical")
             },
             { # analog 1
                 "path" : "analog1",
                 "name" : "Analog 1",
                 "icon" : "icon_analog",
-                "send" : ["analog", "1"]
+                "send" : ["analog", "1"],
+                "exec" : __build_exec_kodi_stop("Analog 1")
             },
             { # analog 2
                 "path" : "analog2",
                 "name" : "Analog 2",
                 "icon" : "icon_analog",
-                "send" : ["analog", "2"]
+                "send" : ["analog", "2"],
+                "exec" : __build_exec_kodi_stop("Analog 2")
             },                  
             { # cda
                 "path" : "cda",
@@ -329,7 +344,8 @@ __menu = [
                 "path" : "off",
                 "name" : "Power off",
                 "icon" : "icon_power",
-                "send" : ["off"]
+                "send" : ["off"],
+                "exec" : "PlayerControl(Stop)"
             },
             { # power
                 "path" : "power",
@@ -538,10 +554,16 @@ def __add_list_item(entry, path):
     item_path = path + "/" + entry["path"]
     item_id = item_path.replace("/", "_")
 
+    param_string = ""
     if "send" in entry:
         param_string = __build_param_string(entry["send"])
-    else:
-        param_string = ""
+
+    if "exec" in entry:
+        if param_string == "":
+            param_string += "?exec=%s" % entry["exec"]
+        else:
+            param_string += "&exec=%s" % entry["exec"]
+
 
     if settings.getSetting("display%s" % item_id) == "false":
         return
@@ -589,4 +611,5 @@ if __name__ == "__main__":
     else:
         __fill_directory(path)
 
-    xbmcplugin.setContent(addon_handle, 'movies')
+    if "exec" in url_params:
+        xbmc.executebuiltin(url_params["exec"][0])
