@@ -599,7 +599,6 @@ def __call_denon(send_params):
     params += send_params
     denon.sendto_denon(params)
     
-    xbmc.executebuiltin("Notification(Send to Denon, finished, 5000, " + addon_dir + "/icon.png)")
 
 if __name__ == "__main__":
 
