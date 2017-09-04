@@ -606,10 +606,10 @@ if __name__ == "__main__":
     path = urlparse.urlparse(sys.argv[0]).path
     url_params = urlparse.parse_qs(sys.argv[2][1:])
 
+    if "exec" in url_params:
+        xbmc.executebuiltin(url_params["exec"][0])
+
     if "send" in url_params:
         __call_denon(url_params["send"])
     else:
         __fill_directory(path)
-
-    if "exec" in url_params:
-        xbmc.executebuiltin(url_params["exec"][0])
