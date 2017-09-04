@@ -7,11 +7,7 @@
     <setting label="Kodi" type="lsep" />
     <setting label="Kodi" type="bool" id="display_kodi" default="true" />
     <setting label="Kodi's input source" type="enum" id="kodi_input_source" values="Analog 1|Analog 2|Optical|CD|Network" default="0" />
-<!--    
-    <setting label="Kodi playlist" type="lsep" />
-    <setting label="Kodi playlist" type="bool" id="display_kodi_playlist" />
-    <setting label="Kodi playlist folder" type="folder" id="kodi_playlist" />    
--->    
+
     <setting label="Radio sources" type="lsep" />
     <setting label="FM Radio" type="bool" id="display_fm" default="true" />
     <setting label="DAB Radio" type="bool" id="display_dab" default="false" />
@@ -115,46 +111,6 @@
     <setting visible="!eq(-15,False)" label="Alarm input source" type="enum" id="alarm_once_source" values="preset|optical|cd|cdusb|net|netusb|analog1|analog2" default="0" />
     <setting visible="!eq(-16,False)" enable="eq(-1,0)" label="Alarm input radio preset" type="slider" id="alarm_once_preset" default="1" range="1,1,40" option="int" />
   </category>
-<!--
-  <category label="Soft alarm">
-    <setting label="Soft sleep" type="lsep" />
-    <setting label="Fade out" type="bool" id="soft_sleep_fade_out" default="false" />
-    
-    <setting label="Soft sleep timer 1" type="lsep" />
-    <setting label="Schedule" type="enum" id="soft_sleep_1" values="off|everyday|sun-thu|fri-sat|mon|tue|wed|thu|fri|sat|sun" default="0" />
-    <setting label="Start" type="time" id="soft_sleep_1_start" />
-    <setting label="End" type="time" id="soft_sleep_1_end" />
-    <setting label="Fade out" type="bool" id="soft_sleep_1_fade_out" default="false" />
-
-    <setting label="Soft sleep timer 2" type="lsep" />
-    <setting label="Schedule" type="enum" id="soft_sleep_2" values="off|everyday|sun-thu|fri-sat|mon|tue|wed|thu|fri|sat|sun" default="0" />
-    <setting label="Start" type="time" id="soft_sleep_2_start" />
-    <setting label="End" type="time" id="soft_sleep_2_end" />
-    <setting label="Fade out" type="bool" id="soft_sleep_2_fade_out" default="false" />
-
-    <setting label="Soft alarm 1" type="lsep" />
-    <setting label="Schedule" type="enum" id="soft_alarm_1" values="off|everyday|mon-fri|sat-sun|mon|tue|wed|thu|fri|sat|sun" default="0" />
-    <setting label="Start" type="time" id="soft_alarm_1_start" />
-    <setting label="End" type="time" id="soft_alarm_1_end" />
-    <setting label="Playlist item" type="slider" id="soft_alarm_1_playlist_item" default="1" range="1,1,99" option="int" />
-    <setting label="Fade in" type="bool" id="soft_alarm_1_fade_in" default="false" />
-
-    <setting label="Soft alarm 2" type="lsep" />
-    <setting label="Schedule" type="enum" id="soft_alarm_2" values="off|everyday|mon-fri|sat-sun|mon|tue|wed|thu|fri|sat|sun" default="0" />
-    <setting label="Start" type="time" id="soft_alarm_2_start" />
-    <setting label="End" type="time" id="soft_alarm_2_end" />
-    <setting label="Playlist item" type="slider" id="soft_alarm_2_playlist_item" default="1" range="1,1,99" option="int" />
-    <setting label="Fade in" type="bool" id="soft_alarm_2_fade_in" default="false" />
-
-    <setting label="Soft alarm 3" type="lsep" />
-    <setting label="Schedule" type="enum" id="soft_alarm_3" values="off|everyday|mon-fri|sat-sun|mon|tue|wed|thu|fri|sat|sun" default="0" />
-    <setting label="Start" type="time" id="soft_alarm_3_start" />
-    <setting label="End" type="time" id="soft_alarm_3_end" />
-    <setting label="Playlist item" type="slider" id="soft_alarm_3_playlist_item" default="1" range="1,1,99" option="int" />
-    <setting label="Fade in" type="bool" id="soft_alarm_3_fade_in" default="false" />
-
-  </category>
--->
   <category label="Smart power">
     <setting label="Auto switch to KODI on playback start" type="bool" id="auto_kodi" default="true" />
     <setting label="Turn off on playback end" type="bool" id="turn_off_on_end" default="false" />
