@@ -12,64 +12,106 @@ class XBMCPlayer(xbmc.Player):
     __MIN_STOP_START_INTERVAL = 10
     __RESWITCH_INTERVAL = 3600
     
-    __last_switch = 0
-    __last_stop = 0
-    __has_played = False
-
     __sources = [["analog", "1"],
            ["analog", "2"],
            ["optical"],
            ["cd"],
            ["net"]]
 
+
     def __init__(self, *args):
 
-        self.__last_switch = 0
-        self.__last_stop = time.time()
-        self.__has_played = False
+        self.__set_has_played(False)
+        self.__set_last_switch("")
+        self.__set_last_stop(time.localtime())
 
 
     def check_idle(self):
 
         __now = time.time()
-
-        xbmc.log('[Denon] enter check_idle: %s\t%s\t%s' % (str(__now), str(self.__last_stop), str(self.__has_played)), xbmc.LOGDEBUG)
-        
         __turn_off_on_idle = 60 * int(
             settings.getSetting("turn_off_on_idle"))
 
         if __turn_off_on_idle == 0 or self.isPlaying() \
-                or not self.__has_played:
+                or not self.__get_has_played():
             return
 
-        if self.__last_stop + __turn_off_on_idle > __now:
+        if self.__get_last_stop() + __turn_off_on_idle > __now:
             return
 
         self.__send_to_denon(["off"])
 
-        self.__last_switch = 0
-        self.__last_stop = __now
-        self.__has_played = False
+        self.__set_last_switch("")
+        self.__set_last_stop(time.localtime())
+        self.__set_has_played(False)
+
+
+    def __set_last_switch(self, v):
         
-        xbmc.log('[Denon] exit check_idle: %s\t%s\t%s' % (str(__now), str(self.__last_stop), str(self.__has_played)), xbmc.LOGDEBUG)
+        if v == "":
+            settings.setSetting("smart_last_switch", "")
+        else:
+            settings.setSetting("smart_last_switch", 
+                            time.strftime("%Y-%m-%d %H:%M:%S", v))
+    
+    
+    def __get_last_switch(self):
+
+        s = settings.getSetting("smart_last_switch")
+
+        if s == "":
+            return 0
+        else:
+            return time.mktime(time.strptime(s, "%Y-%m-%d %H:%M:%S"))
+
+    
+    def __set_last_stop(self, v):
+        
+        if v == "":
+            settings.setSetting("smart_last_stop", "")        
+        else:
+            settings.setSetting("smart_last_stop", 
+                            time.strftime("%Y-%m-%d %H:%M:%S", v))
+
+    
+    def __get_last_stop(self):
+
+        s = settings.getSetting("smart_last_stop")
+
+        if s == "":
+            return 0
+        else:
+            return time.mktime(time.strptime(s, "%Y-%m-%d %H:%M:%S"))
+    
+    
+    def __set_has_played(self, v):
+        
+        settings.setSetting("smart_has_played", str(v).lower())
+    
+    
+    def __get_has_played(self):
+        
+        return settings.getSetting("smart_has_played") == "true"
 
 
     def __is_navigation_event(self):
-        return time.time() < self.__last_stop + self.__MIN_STOP_START_INTERVAL
+        
+        return time.time() < self.__get_last_stop() \
+            + self.__MIN_STOP_START_INTERVAL
 
 
     def __is_switch_fresh(self):
-        return time.time() < self.__last_switch + self.__RESWITCH_INTERVAL
+        
+        return time.time() < self.__get_last_switch() \
+            + self.__RESWITCH_INTERVAL
 
 
     def onPlayBackStarted(self):
 
         __now = time.time()
 
-        xbmc.log('[Denon] enter onPlayBackStarted: %s\t%s\t%s' % (str(__now), str(self.__last_stop), str(self.__has_played)), xbmc.LOGDEBUG)
-
         if self.__is_navigation_event():
-            self.__last_switch = __now
+            self.__set_last_switch(time.localtime())
             return
 
         if self.__is_switch_fresh():
@@ -78,39 +120,25 @@ class XBMCPlayer(xbmc.Player):
         self.__send_to_denon(self.__sources[int(
             settings.getSetting("kodi_input_source"))])
 
-        self.__last_switch = __now
-        self.__has_played = True
-
-        xbmc.log('[Denon] exit onPlayBackStarted: %s\t%s\t%s' % (str(__now), str(self.__last_stop), str(self.__has_played)), xbmc.LOGDEBUG)
+        self.__set_last_switch(time.localtime())
+        self.__set_has_played(True)
 
 
     def onPlayBackStopped(self):
 
-        __now = time.time()
-
-        xbmc.log('[Denon] enter onPlayBackStopped: %s\t%s\t%s' % (str(__now), str(self.__last_stop), str(self.__has_played)), xbmc.LOGDEBUG)
-
-        self.__last_switch = 0
-        self.__last_stop = __now
-        self.__has_played = True        
-
-        xbmc.log('[Denon] exit onPlayBackStopped: %s\t%s\t%s' % (str(__now), str(self.__last_stop), str(self.__has_played)), xbmc.LOGDEBUG)
+        self.__set_last_switch("")
+        self.__set_last_stop(time.localtime())
+        self.__set_has_played(True)        
 
 
     def onPlayBackEnded(self):
 
-        __now = time.time()
-
-        xbmc.log('[Denon] enter onPlayBackEnded: %s\t%s\t%s' % (str(__now), str(self.__last_stop), str(self.__has_played)), xbmc.LOGDEBUG)
-
-        self.__last_switch = 0
-        self.__last_stop = __now
-        self.__has_played = True        
+        self.__set_last_switch("")
+        self.__set_last_stop(time.localtime())
+        self.__set_has_played(True)        
 
         if settings.getSetting("turn_off_on_end") == "true":
             self.__send_to_denon(["off"])
-
-        xbmc.log('[Denon] exit onPlayBackEnded: %s\t%s\t%s' % (str(__now), str(self.__last_stop), str(self.__has_played)), xbmc.LOGDEBUG)
 
 
     def __send_to_denon(self, send_params):

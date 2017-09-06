@@ -111,10 +111,17 @@
     <setting visible="!eq(-15,False)" label="Alarm input source" type="enum" id="alarm_once_source" values="preset|optical|cd|cdusb|net|netusb|analog1|analog2" default="0" />
     <setting visible="!eq(-16,False)" enable="eq(-1,0)" label="Alarm input radio preset" type="slider" id="alarm_once_preset" default="1" range="1,1,40" option="int" />
   </category>
+  
   <category label="Smart power">
     <setting label="Auto switch to KODI on playback start" type="bool" id="auto_kodi" default="true" />
     <setting label="Turn off on playback end" type="bool" id="turn_off_on_end" default="false" />
     <setting label="Turn off on idle (minutes, 0 = off)" type="slider" id="turn_off_on_idle" default="0" range="0,15,120" option="int" />
+    <setting label="Stop playback on turn off" type="bool" id="stop_on_turn_off" default="false" />
+  
+    <setting label="Internal state" type="lsep" />
+    <setting enable="false" label="Last switch" type="text" id="smart_last_switch" default="" />
+    <setting enable="false" label="Last stop" type="text" id="smart_last_stop" default="" />
+    <setting enable="false" label="KODI has played" type="bool" id="smart_has_played" default="false" />
   </category>
   
 </settings>

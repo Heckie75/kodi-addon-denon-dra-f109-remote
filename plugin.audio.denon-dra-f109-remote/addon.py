@@ -121,6 +121,13 @@ def __build_exec_kodi_stop(source):
     else:
         return "PlayerControl(Stop)"
     
+    
+def __build_exec_power_off():
+    if settings.getSetting("stop_on_turn_off") == "true":
+        return "PlayerControl(Stop)"
+    else:
+        return ""
+
 
 def __send_kodi():
 
@@ -345,7 +352,7 @@ __menu = [
                 "name" : "Power off",
                 "icon" : "icon_power",
                 "send" : ["off"],
-                "exec" : "PlayerControl(Stop)"
+                "exec" : __build_exec_power_off()
             },
             { # power
                 "path" : "power",
