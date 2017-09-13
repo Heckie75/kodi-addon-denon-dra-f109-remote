@@ -1,8 +1,5 @@
 import os
 import sys
-import time
-from datetime import datetime
-from datetime import timedelta
 
 import urlparse
 import xbmcgui
@@ -634,20 +631,6 @@ def _add_list_item(entry, path):
                             + param_string,
                             isFolder=is_folder)
 
-
-
-
-
-def _parse_time(s_time):
-
-    try:
-        t_time = time.strptime(s_time, "%H:%M")
-        td = timedelta(
-            hours = t_time.tm_hour,
-            minutes = t_time.tm_min)
-        return td
-    except:
-        return timedelta(seconds = 0)
 
 
 
