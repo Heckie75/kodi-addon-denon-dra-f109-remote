@@ -652,40 +652,7 @@ def _parse_time(s_time):
 
 
 
-
-def _now():
-
-    t_now  = time.localtime()
-    td_now = timedelta(hours = t_now.tm_hour,
-                     minutes = t_now.tm_min,
-                     seconds = t_now.tm_sec)
-
-    return td_now
-
-
-
-
-def _is_no_kodi_period(send_params):
-
-    if _send_kodi()[0] not in send_params:
-       return False
-
-    not_before = _parse_time(settings.getSetting("auto_kodi_not_before"))
-    not_after  = _parse_time(settings.getSetting("auto_kodi_not_after"))
-    now        = _now()
-
-    if not_before < not_after:
-        return now < not_before or now > not_after
-    else:
-        return not_after < now < not_before
-
-
-
 def _call_denon(send_params):
-
-    if _is_no_kodi_period(send_params):
-        xbmc.executebuiltin("Notification(Send to Denon, no action - do not disturb now!, 5000, " + addon_dir + "/icon.png)")
-        return
 
     xbmc.executebuiltin("Notification(Send to Denon, " + " ".join(send_params) + ", 5000, " + addon_dir + "/icon.png)")
     

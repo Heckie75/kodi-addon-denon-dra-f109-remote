@@ -106,7 +106,32 @@ class XBMCPlayer(xbmc.Player):
             + self.__RESWITCH_INTERVAL
 
 
+    def _now(self):
+
+        t_now  = time.localtime()
+        td_now = timedelta(hours = t_now.tm_hour,
+                         minutes = t_now.tm_min,
+                         seconds = t_now.tm_sec)
+
+        return td_now
+
+
+    def _is_no_kodi_period(self):
+
+        not_before = self._parse_time(settings.getSetting("auto_kodi_not_before"))
+        not_after  = self._parse_time(settings.getSetting("auto_kodi_not_after"))
+        now        = self._now()
+
+        if not_before < not_after:
+            return now < not_before or now > not_after
+        else:
+            return not_after < now < not_before
+
+
     def onPlayBackStarted(self):
+
+	if self._is_no_kodi_period():
+            return
 
         __now = time.time()
 
