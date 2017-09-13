@@ -119,6 +119,16 @@ class XBMCPlayer(xbmc.Player):
         return td_now
 
 
+    def _parse_time(self,s_time):
+        try:
+            t_time = time.strptime(s_time, "%H:%M")
+            return timedelta(
+                hours = t_time.tm_hour,
+                minutes = t_time.tm_min)
+        except:
+            return timedelta(seconds = 0)
+
+
     def _is_no_kodi_period(self):
 
         not_before = self._parse_time(settings.getSetting("auto_kodi_not_before"))
