@@ -1,5 +1,9 @@
 import os
 import sys
+import time
+from datetime import datetime
+from datetime import timedelta
+
 import urlparse
 import xbmcgui
 import xbmcplugin
@@ -18,7 +22,10 @@ settings = xbmcaddon.Addon(id=__PLUGIN_ID__);
 addon_handle = int(sys.argv[1])
 addon_dir = xbmc.translatePath( settings.getAddonInfo('path') )
 
-def __build_alarm():
+
+
+
+def _build_alarm():
 
     sources = ["preset", "optical", "cd", "cdusb",
                "net", "netusb", "analog1", "analog2"]
@@ -114,28 +121,37 @@ def __build_alarm():
 
     return entries
 
-def __build_exec_kodi_stop(source):
+
+
+
+def _build_exec_kodi_stop(source):
 
     if settings.getSetting("kodi_input_source") == source:
         return ""
     else:
         return "PlayerControl(Stop)"
     
+
+
     
-def __build_exec_power_off():
+def _build_exec_power_off():
     if settings.getSetting("stop_on_turn_off") == "true":
         return "PlayerControl(Stop)"
     else:
         return ""
 
 
-def __send_kodi():
+
+
+def _send_kodi():
 
     kodi_input_source = int(settings.getSetting("kodi_input_source"))
     return SOURCES[kodi_input_source]
 
 
-def __build_presets():
+
+
+def _build_presets():
 
     entries = []
 
@@ -155,7 +171,10 @@ def __build_presets():
 
     return entries
 
-def __build_sleep_timer():
+
+
+
+def _build_sleep_timer():
     entries = [
         {
             "path" : "off",
@@ -178,7 +197,10 @@ def __build_sleep_timer():
 
     return entries
 
-def __build_volume():
+
+
+
+def _build_volume():
     entries = [
         {
             "path" : "off",
@@ -217,7 +239,10 @@ def __build_volume():
 
     return entries
 
-__menu = [
+
+
+
+_menu = [
     { # root
         "path" : "",
         "node" : [
@@ -225,7 +250,7 @@ __menu = [
                 "path" : "kodi",
                 "name" : "KODI",
                 "icon" : "icon_kodi",
-                "send" : __send_kodi()
+                "send" : _send_kodi()
             },
             { # fm
                 "path" : "fm",
@@ -244,7 +269,7 @@ __menu = [
             { # presets
                 "path" : "presets",
                 "name" : "Radio presets",
-                "node" : __build_presets()
+                "node" : _build_presets()
             },
             { # preset
                 "path" : "preset",
@@ -281,35 +306,35 @@ __menu = [
                 "name" : "CD",
                 "icon" : "icon_cd",
                 "send" : ["cd"],
-                "exec" : __build_exec_kodi_stop("CD")
+                "exec" : _build_exec_kodi_stop("CD")
             },
             { # net
                 "path" : "net",
                 "name" : "Network",
                 "icon" : "icon_net",
                 "send" : ["net"],
-                "exec" : __build_exec_kodi_stop("Network")
+                "exec" : _build_exec_kodi_stop("Network")
             },
             { # optical
                 "path" : "optical",
                 "name" : "Optical",
                 "icon" : "icon_digital",
                 "send" : ["optical"],
-                "exec" : __build_exec_kodi_stop("Optical")
+                "exec" : _build_exec_kodi_stop("Optical")
             },
             { # analog 1
                 "path" : "analog1",
                 "name" : "Analog 1",
                 "icon" : "icon_analog",
                 "send" : ["analog", "1"],
-                "exec" : __build_exec_kodi_stop("Analog 1")
+                "exec" : _build_exec_kodi_stop("Analog 1")
             },
             { # analog 2
                 "path" : "analog2",
                 "name" : "Analog 2",
                 "icon" : "icon_analog",
                 "send" : ["analog", "2"],
-                "exec" : __build_exec_kodi_stop("Analog 2")
+                "exec" : _build_exec_kodi_stop("Analog 2")
             },                  
             { # cda
                 "path" : "cda",
@@ -352,7 +377,7 @@ __menu = [
                 "name" : "Power off",
                 "icon" : "icon_power",
                 "send" : ["off"],
-                "exec" : __build_exec_power_off()
+                "exec" : _build_exec_power_off()
             },
             { # power
                 "path" : "power",
@@ -361,12 +386,12 @@ __menu = [
                     { # sleep
                         "path" : "sleep",
                         "name" : "Sleep timer",
-                        "node" : __build_sleep_timer()
+                        "node" : _build_sleep_timer()
                     },
                     { # alarm
                         "path" : "alarm",
                         "name" : "Alarm",
-                        "node" : __build_alarm()
+                        "node" : _build_alarm()
                     },
                     { # dimmer
                         "path" : "dimmer",
@@ -413,7 +438,7 @@ __menu = [
                     { # volume
                         "path" : "volume",
                         "name" : "Volume",
-                        "node" : __build_volume()
+                        "node" : _build_volume()
                     },
                     { # bass
                         "path" : "bass",
@@ -511,13 +536,16 @@ __menu = [
     }
 ]
 
-def __get_directory_by_path(path):
+
+
+
+def _get_directory_by_path(path):
 
     if path == "/":
-        return __menu[0]
+        return _menu[0]
 
     tokens = path.split("/")[1:]
-    directory = __menu[0]
+    directory = _menu[0]
 
     while len(tokens) > 0:
         path = tokens.pop(0)
@@ -528,17 +556,22 @@ def __get_directory_by_path(path):
 
     return directory
 
-def __fill_directory(path):
 
-    directory = __get_directory_by_path(path)
+
+
+def _fill_directory(path):
+
+    directory = _get_directory_by_path(path)
 
     for entry in directory["node"]:
-        __add_list_item(entry, path)
+        _add_list_item(entry, path)
 
     xbmcplugin.endOfDirectory(addon_handle)
 
 
-def __build_param_string(params):
+
+
+def _build_param_string(params):
 
     s = ""
     i = 0
@@ -553,7 +586,10 @@ def __build_param_string(params):
 
     return s
 
-def __add_list_item(entry, path):
+
+
+
+def _add_list_item(entry, path):
 
     if path == "/":
         path = ""
@@ -563,7 +599,7 @@ def __add_list_item(entry, path):
 
     param_string = ""
     if "send" in entry:
-        param_string = __build_param_string(entry["send"])
+        param_string = _build_param_string(entry["send"])
 
     if "exec" in entry:
         if param_string == "":
@@ -598,7 +634,58 @@ def __add_list_item(entry, path):
                             + param_string,
                             isFolder=is_folder)
 
-def __call_denon(send_params):
+
+
+
+
+def _parse_time(s_time):
+
+    try:
+        t_time = time.strptime(s_time, "%H:%M")
+        td = timedelta(
+            hours = t_time.tm_hour,
+            minutes = t_time.tm_min)
+        return td
+    except:
+        return timedelta(seconds = 0)
+
+
+
+
+
+def _now():
+
+    t_now  = time.localtime()
+    td_now = timedelta(hours = t_now.tm_hour,
+                     minutes = t_now.tm_min,
+                     seconds = t_now.tm_sec)
+
+    return td_now
+
+
+
+
+def _is_no_kodi_period(send_params):
+
+    if _send_kodi()[0] not in send_params:
+       return False
+
+    not_before = _parse_time(settings.getSetting("auto_kodi_not_before"))
+    not_after  = _parse_time(settings.getSetting("auto_kodi_not_after"))
+    now        = _now()
+
+    if not_before < not_after:
+        return now < not_before or now > not_after
+    else:
+        return not_after < now < not_before
+
+
+
+def _call_denon(send_params):
+
+    if _is_no_kodi_period(send_params):
+        xbmc.executebuiltin("Notification(Send to Denon, no action - do not disturb now!, 5000, " + addon_dir + "/icon.png)")
+        return
 
     xbmc.executebuiltin("Notification(Send to Denon, " + " ".join(send_params) + ", 5000, " + addon_dir + "/icon.png)")
     
@@ -606,6 +693,8 @@ def __call_denon(send_params):
     params += send_params
     denon.sendto_denon(params)
     
+
+
 
 if __name__ == "__main__":
 
@@ -616,6 +705,6 @@ if __name__ == "__main__":
         xbmc.executebuiltin(url_params["exec"][0])
 
     if "send" in url_params:
-        __call_denon(url_params["send"])
+        _call_denon(url_params["send"])
     else:
-        __fill_directory(path)
+        _fill_directory(path)

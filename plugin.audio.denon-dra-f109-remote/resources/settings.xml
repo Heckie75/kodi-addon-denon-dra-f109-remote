@@ -114,6 +114,8 @@
   
   <category label="Smart power">
     <setting label="Auto switch to KODI on playback start" type="bool" id="auto_kodi" default="true" />
+    <setting visible="eq(-1,True)" label="... but not before (time)" type="time" id="auto_kodi_not_before" default="00:00" />
+    <setting visible="eq(-2,True)" label="... and not after (time)" type="time" id="auto_kodi_not_after" default="24:00" />
     <setting label="Turn off on playback end" type="bool" id="turn_off_on_end" default="false" />
     <setting label="Turn off on idle (minutes, 0 = off)" type="slider" id="turn_off_on_idle" default="0" range="0,15,120" option="int" />
     <setting label="Stop playback on turn off" type="bool" id="stop_on_turn_off" default="false" />
