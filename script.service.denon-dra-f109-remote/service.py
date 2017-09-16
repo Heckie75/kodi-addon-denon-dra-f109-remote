@@ -14,7 +14,7 @@ class XBMCPlayer(xbmc.Player):
 
     __MIN_STOP_START_INTERVAL = 10
     __RESWITCH_INTERVAL = 3600
-    
+
     __sources = [["analog", "1"],
            ["analog", "2"],
            ["optical"],
@@ -50,14 +50,14 @@ class XBMCPlayer(xbmc.Player):
 
 
     def __set_last_switch(self, v):
-        
+
         if v == "":
             settings.setSetting("smart_last_switch", "")
         else:
-            settings.setSetting("smart_last_switch", 
+            settings.setSetting("smart_last_switch",
                             time.strftime("%Y-%m-%d %H:%M:%S", v))
-    
-    
+
+
     def __get_last_switch(self):
 
         s = settings.getSetting("smart_last_switch")
@@ -67,16 +67,16 @@ class XBMCPlayer(xbmc.Player):
         else:
             return time.mktime(time.strptime(s, "%Y-%m-%d %H:%M:%S"))
 
-    
+
     def __set_last_stop(self, v):
-        
+
         if v == "":
-            settings.setSetting("smart_last_stop", "")        
+            settings.setSetting("smart_last_stop", "")
         else:
-            settings.setSetting("smart_last_stop", 
+            settings.setSetting("smart_last_stop",
                             time.strftime("%Y-%m-%d %H:%M:%S", v))
 
-    
+
     def __get_last_stop(self):
 
         s = settings.getSetting("smart_last_stop")
@@ -85,26 +85,26 @@ class XBMCPlayer(xbmc.Player):
             return 0
         else:
             return time.mktime(time.strptime(s, "%Y-%m-%d %H:%M:%S"))
-    
-    
+
+
     def __set_has_played(self, v):
-        
+
         settings.setSetting("smart_has_played", str(v).lower())
-    
-    
+
+
     def __get_has_played(self):
-        
+
         return settings.getSetting("smart_has_played") == "true"
 
 
     def __is_navigation_event(self):
-        
+
         return time.time() < self.__get_last_stop() \
             + self.__MIN_STOP_START_INTERVAL
 
 
     def __is_switch_fresh(self):
-        
+
         return time.time() < self.__get_last_switch() \
             + self.__RESWITCH_INTERVAL
 
@@ -143,7 +143,7 @@ class XBMCPlayer(xbmc.Player):
 
     def onPlayBackStarted(self):
 
-	if self._is_no_kodi_period():
+        if self._is_no_kodi_period():
             return
 
         __now = time.time()
@@ -166,14 +166,14 @@ class XBMCPlayer(xbmc.Player):
 
         self.__set_last_switch("")
         self.__set_last_stop(time.localtime())
-        self.__set_has_played(True)        
+        self.__set_has_played(True)
 
 
     def onPlayBackEnded(self):
 
         self.__set_last_switch("")
         self.__set_last_stop(time.localtime())
-        self.__set_has_played(True)        
+        self.__set_has_played(True)
 
         if settings.getSetting("turn_off_on_end") == "true":
             self.__send_to_denon(["off"])
@@ -184,8 +184,8 @@ class XBMCPlayer(xbmc.Player):
         params = [settings.getSetting("device")]
         params += send_params
 
-        xbmc.executebuiltin("Notification(Send to Denon, " 
-                    + " ".join(send_params) 
+        xbmc.executebuiltin("Notification(Send to Denon, "
+                    + " ".join(send_params)
                     + ", 5000, " + addon_dir + "/icon.png)")
 
         denon.sendto_denon(params)

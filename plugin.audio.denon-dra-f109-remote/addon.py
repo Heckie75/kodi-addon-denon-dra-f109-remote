@@ -1,4 +1,5 @@
 import os
+import os.path
 import sys
 
 import urlparse
@@ -11,7 +12,7 @@ __PLUGIN_ID__ = "plugin.audio.denon-dra-f109-remote"
 
 SOURCES = [["analog", "1"],
            ["analog", "2"],
-           ["optical"], 
+           ["optical"],
            ["cd"],
            ["net"]]
 
@@ -30,7 +31,7 @@ def _build_alarm():
     everyday_start = settings.getSetting("alarm_everyday_start")
     everyday_end = settings.getSetting("alarm_everyday_end")
     everyday_source = int(settings.getSetting("alarm_everyday_source"))
-    
+
     if everyday_source == 0:
         everyday_preset = settings.getSetting("alarm_everyday_preset")
     else:
@@ -39,7 +40,7 @@ def _build_alarm():
     once_start = settings.getSetting("alarm_once_start")
     once_end = settings.getSetting("alarm_once_end")
     once_source = int(settings.getSetting("alarm_once_source"))
-    
+
     if once_source == 0:
         once_preset = settings.getSetting("alarm_once_preset")
     else:
@@ -53,8 +54,8 @@ def _build_alarm():
             "send" : ["alarm", "off"]
         }
     ]
-    
-    if everyday_start != "" and everyday_end != "": 
+
+    if everyday_start != "" and everyday_end != "":
         entries += [
             {
                 "path" : "everyday",
@@ -70,8 +71,8 @@ def _build_alarm():
                     "alarm", "everyday"]
             }
         ]
-        
-    if once_start != "" and once_end != "": 
+
+    if once_start != "" and once_end != "":
         entries += [
             {
                 "path" : "once",
@@ -87,12 +88,12 @@ def _build_alarm():
                     "alarm", "once"]
             }
         ]
-                    
+
     if everyday_start != "" \
         and everyday_end != "" \
         and once_start != "" \
-        and once_end != "": 
-        
+        and once_end != "":
+
         entries += [
             {
                 "path" : "on",
@@ -127,10 +128,10 @@ def _build_exec_kodi_stop(source):
         return ""
     else:
         return "PlayerControl(Stop)"
-    
 
 
-    
+
+
 def _build_exec_power_off():
     if settings.getSetting("stop_on_turn_off") == "true":
         return "PlayerControl(Stop)"
@@ -187,7 +188,7 @@ def _build_sleep_timer():
             {
                 "path" : str(i),
                 "name" : "%s minutes" % t,
-                "icon" : "icon_sleep",                
+                "icon" : "icon_sleep",
                 "send" : ["sleep", t]
             }
         ]
@@ -202,7 +203,7 @@ def _build_volume():
         {
             "path" : "off",
             "name" : "Mute On",
-            "icon" : "icon_mute",            
+            "icon" : "icon_mute",
             "send" : ["mute", "on"]
         },
         {
@@ -224,7 +225,7 @@ def _build_volume():
     _range = range(_min, _max, _step)
 
     for i in _range:
-        
+
         entries += [
             {
                 "path" : str(i),
@@ -295,7 +296,7 @@ _menu = [
                         "name" : "Info",
                         "icon" : "icon_info",
                         "send" : ["info"]
-                    }                          
+                    }
                 ]
             },
             { # cd
@@ -332,7 +333,7 @@ _menu = [
                 "icon" : "icon_analog",
                 "send" : ["analog", "2"],
                 "exec" : _build_exec_kodi_stop("Analog 2")
-            },                  
+            },
             { # cda
                 "path" : "cda",
                 "name" : "CD Audio",
@@ -344,7 +345,7 @@ _menu = [
                 "name" : "USB",
                 "icon" : "icon_usb",
                 "send" : ["usb"]
-            },                  
+            },
             { # internet
                 "path" : "internet",
                 "name" : "Internet radio",
@@ -616,7 +617,7 @@ def _add_list_item(entry, path):
     label = entry["name"]
     if settings.getSetting("label%s" % item_id) != "":
         label = settings.getSetting("label%s" % item_id)
-    
+
     if "icon" in entry:
         icon_file = os.path.join(addon_dir, "resources", "assets", entry["icon"] + ".png")
     else:
@@ -634,15 +635,34 @@ def _add_list_item(entry, path):
 
 
 
+def _check_hardware():
+
+    dev = settings.getSetting("device")
+    if os.path.exists(dev):
+        return True
+
+    icon_file = os.path.join(addon_dir, "resources", "assets", "icon_no_connection.png")
+    li = xbmcgui.ListItem("No connection", iconImage=icon_file)
+    xbmcplugin.addDirectoryItem(handle=addon_handle,
+                                listitem=li,
+                                url="plugin://" + __PLUGIN_ID__,
+                                isFolder=False)
+
+    xbmcplugin.endOfDirectory(addon_handle)
+
+    return False
+
+
+
 
 def _call_denon(send_params):
 
     xbmc.executebuiltin("Notification(Send to Denon, " + " ".join(send_params) + ", 5000, " + addon_dir + "/icon.png)")
-    
+
     params = [settings.getSetting("device")]
     params += send_params
     denon.sendto_denon(params)
-    
+
 
 
 
@@ -651,10 +671,11 @@ if __name__ == "__main__":
     path = urlparse.urlparse(sys.argv[0]).path
     url_params = urlparse.parse_qs(sys.argv[2][1:])
 
-    if "exec" in url_params:
-        xbmc.executebuiltin(url_params["exec"][0])
+    if _check_hardware():
+        if "exec" in url_params:
+            xbmc.executebuiltin(url_params["exec"][0])
 
-    if "send" in url_params:
-        _call_denon(url_params["send"])
-    else:
-        _fill_directory(path)
+        if "send" in url_params:
+            _call_denon(url_params["send"])
+        else:
+            _fill_directory(path)
