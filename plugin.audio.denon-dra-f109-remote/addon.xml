@@ -31,7 +31,21 @@
 		<assets>
 			<icon>icon.png</icon>
 			<fanart>fanart.png</fanart>
-			<screenshot></screenshot>
+			<screenshot>resources/assets/screen_01_overview.png</screenshot>
+			<screenshot>resources/assets/screen_02_presets.png</screenshot>
+			<screenshot>resources/assets/screen_03_power.png</screenshot>
+			<screenshot>resources/assets/screen_04_sleep.png</screenshot>
+			<screenshot>resources/assets/screen_05_sound.png</screenshot>
+			<screenshot>resources/assets/screen_06_timers.png</screenshot>
+			<screenshot>resources/assets/screen_07_volume.png</screenshot>
+			<screenshot>resources/assets/screen_settings_01_device.png</screenshot>
+			<screenshot>resources/assets/screen_settings_02_sources.png</screenshot>
+			<screenshot>resources/assets/screen_settings_03_labels.png</screenshot>
+			<screenshot>resources/assets/screen_settings_04_presets.png</screenshot>
+			<screenshot>resources/assets/screen_settings_05_sound.png</screenshot>
+			<screenshot>resources/assets/screen_settings_06_timers.png</screenshot>
+			<screenshot>resources/assets/screen_settings_07_timers2.png</screenshot>
+			<screenshot>resources/assets/screen_settings_08_smart.png</screenshot>
 		</assets>
 	</extension>
 </addon>
