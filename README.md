@@ -2,7 +2,6 @@
 Kodi addon which allows you to control your stereo receiver [Denon DRA-F109](https://www.denon.de/de/product/compactsystem/mini/draf109dab) directly in Kodi. 
 
 After installation of this plugin and connecting your receiver you can set input source, play radio presets or control volume in Kodi. 
-<img src="plugin.audio.denon-dra-f109-remote/resources/assets/screen_01_overview.png?raw=true">
 
 ## Overview of features:
 * Configurable overview page
@@ -64,7 +63,9 @@ After you have activated the addon you can click on the "Configure" button in th
 
 <img src="plugin.audio.denon-dra-f109-remote/resources/assets/screen_settings_01_device.png?raw=true">
 
-Now you can leave the settings dialog and go back to Kodi's home screens. In your "music > addons" section there should be a new entry called "Denon DRA-F109 Remote". After you click on it you should see a simular screen as shown above.
+Now you can leave the settings dialog and go back to Kodi's home screens. In your "music > addons" section there should be a new entry called "Denon DRA-F109 Remote". After you click on it you should see a simular screen as shown below.
+
+<img src="plugin.audio.denon-dra-f109-remote/resources/assets/screen_01_overview.png?raw=true">
 
 If the serial device is not available then you see a "no connection" screen instead:
 <img src="plugin.audio.denon-dra-f109-remote/resources/assets/screen_no_connection.png?raw=true">
@@ -73,4 +74,17 @@ In this case repeat and check the installation instructions.
 
 ## Features in practice
 
-todo
+### Configure input sources on overview page
+You first step should be to configure the input sources that you would like to display on the overview page. In order to do this go back to addon's configuration menu and select the tab "Input sources":
+
+<img src="plugin.audio.denon-dra-f109-remote/resources/assets/screen_settings_02_sources.png?raw=true">
+
+In the first section called "Kodi" you can define if the addon should display an extra (logical) input source for Kodi. By setting "Kodi's input source" you specify how your Kodi-PC / Raspberry is connect to the stereo receiver. Physical input sources of your Denon receiver are: "Analog 1", "Analog 2", "Optical", "CD" or "Network". I am lucky about my sound card which has an optical output.
+
+The next section is about "Radio sources". Here you can define if "FM Radio" and "Digital Radio (DAB)" is displayed as input source. By activating radio presets there will be a folder which contains all radio presets. We will come to it later. Last but not least you can activating the "Tune" menu. In this menu you will find actions in order to zap the radio presets but also in order to switch between stereo/mono mode. 
+
+In section "Physical input sources" you can diable all input sources that are not connected to any device. Take a look at the "Input labels" configuration tab. Here you can assign meaningful labels to your input source, e.g. "TV" instead of "Analog 1":
+
+<img src="plugin.audio.denon-dra-f109-remote/resources/assets/screen_settings_03_labels?raw=true">
+
+
