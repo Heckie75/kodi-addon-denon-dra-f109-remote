@@ -55,7 +55,9 @@ After you have restarted Kodi you must activate the plugin explicitly.
 1. Start Kodi
 2. Go to "Addons" menu
 3. Select "User addons"
-4. Select "Music addons"
+4. Select "Service" addons, select "Denon DRA-F109 Remote (autoswitch)" and activate it
+5. Go back to "Addons" menu and select "User addons"
+6. Select "Music addons"
 
 There you should see the addon called "Denon DRA-F109 Remote" which is disabled by default. Open addon's dialog and activate it.
 
