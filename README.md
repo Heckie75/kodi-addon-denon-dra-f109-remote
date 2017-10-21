@@ -58,7 +58,7 @@ After you have restarted Kodi you must activate the plugin explicitly.
 3. Select "User addons"
 4. Select "Music addons"
 
-There you should see the addon called "Denon DRA-F109" which is disabled by default. Click on it and activate it.
+There you should see the addon called "Denon DRA-F109" which is disabled by default. Open addon's dialog and activate it.
 
 After you have activated the addon you can click on the "Configure" button in the same dialog. It is required to set the correct serial input device. By default it is `/dev/ttyUSB0`. You must set it to your serial device which is connected to the denon receiver:
 
