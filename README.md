@@ -35,9 +35,9 @@ kodi-addon-denon-dra-f109-remote works only on Linux / Raspberry Pi. The plugin 
 
 The technical setup is based on a serial interface (rs232) which is wired to the receiver's remote connector. See also ["Hacking Denon DRA-F109 remote connector" by Kamil Figiela](https://kfigiela.github.io/2014/06/15/denon-remote-connector/)
 
-Before you can use the plugin you have to manually install [PySerial](https://pythonhosted.org/pyserial/) which should be available in standard repositories.
+Before you can use this plugin you have to manually install [PySerial](https://pythonhosted.org/pyserial/) which should be available in standard repositories.
 
-PySerial acn be installed like this:
+PySerial can be installed like this:
 ```
 apt install python-serial
 ```
