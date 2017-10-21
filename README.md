@@ -85,6 +85,6 @@ The next section is about "Radio sources". Here you can define if "FM Radio" and
 
 In section "Physical input sources" you can diable all input sources that are not connected to any device. Take a look at the "Input labels" configuration tab. Here you can assign meaningful labels to your input source, e.g. "TV" instead of "Analog 1":
 
-<img src="plugin.audio.denon-dra-f109-remote/resources/assets/screen_settings_03_labels?raw=true">
+<img src="plugin.audio.denon-dra-f109-remote/resources/assets/screen_settings_03_labels.png?raw=true">
 
 
