@@ -102,8 +102,9 @@ Unfortunately the serial interface of the Denon receiver does not allow to query
 Select a preset and press enter in order to give a name. As long as you haven't given a name explicitly the entry will be hidden in frontend. 
 
 After you have set up some presets the menu in frontend looks like this:
-<img src="plugin.audio.denon-dra-f109-remote/resources/assets/screen_02_presets?raw=true">
-
+<img src="plugin.audio.denon-dra-f109-remote/resources/assets/screen_02_presets.png?raw=true">
 
 Don't forget to activate the "Radio presets" input source so that it's not hidden.
 
+### Sound settings
+todo
