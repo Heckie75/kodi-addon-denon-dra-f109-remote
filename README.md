@@ -9,9 +9,9 @@ After installation of this plugin and connecting your receiver you can set input
 * Input sources
   * List of input sources (physical devices e.g. "Analog 1", logical devices e.g. "Server")
   * Meaningful names for sources can be given, e.g. "TV" (instead of "Analog 1")
-  * Unrequired input sources can be hidden
+  * Unused input sources can be hidden
   * Special input source for Kodi with auto-select on playback in Kodi
-  * Stop Kodi playback on switch to none-kodi-input source, e.g. radio
+  * Stop Kodi playback on switch to none-kodi input source, e.g. radio
 * Radio presets (fm and dab)
   * Station names can be given in Kodi settings
 * Volume control
