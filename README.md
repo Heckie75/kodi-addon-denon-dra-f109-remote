@@ -148,7 +148,7 @@ Maybe you would like that the receiver automatically turns on and switches to "K
 <img src="plugin.audio.denon-dra-f109-remote/resources/assets/screen_settings_08_smart.png?raw=true">
 
 But in terms of my equipment and "smart home setup" - I have set up a combined audio device in Linux that feeds my bedroom via bluetooth audio too - I don't want that the receiver turns on in the morning when my Kodi timer wakes me up (see my other Kodi plugin [kodi-addon-heckies-timer
-](/Heckie75/kodi-addon-heckies-timer)). Therefore I have defined two settings in order to configure a down-time. In these periods the addon doesn't tell the receiver to turn on automatically when playback starts. 
+](//github.com/Heckie75/kodi-addon-heckies-timer)). Therefore I have defined two settings in order to configure a down-time. In these periods the addon doesn't tell the receiver to turn on automatically when playback starts. 
 
 There are three other settings which are related to behaviour "on playback end", "on idle" and to combination of stopping playback when receiver has been turned off. 
 
