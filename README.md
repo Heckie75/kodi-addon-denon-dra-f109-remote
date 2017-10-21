@@ -119,4 +119,26 @@ My volume settings start at the level 4 and ends at 20. I have choosen steps of 
 
 <img src="plugin.audio.denon-dra-f109-remote/resources/assets/screen_07_volume.png?raw=true">
 
-Here you probably would like to ask why there are no "volume up" and "volume down" actions. The anser is easy: The denon serial protocol does not seem to know commands for it. Therefore it's simply not possible. 
+Here you probably would like to ask why there are no "volume up" and "volume down" actions. The answer is easy: The denon serial protocol does not know commands for it. Therefore it's simply not possible. 
+
+### Timer and sleep timer
+The Denon receiver has it's own alarm clock integrated. Unfortunately the serial protocol does not allow to synchronize the internal clock but you can setup timers and activate the sleep timer. 
+
+I prefer sleep timers for different situations. That's why you can setup 5 different intervals for the sleep timer. The values are in minutes after the receiver automatically turns off:
+<img src="plugin.audio.denon-dra-f109-remote/resources/assets/screen_settings_07_timers.png?raw=true">
+
+After you have configured the sleep timer the menu looks like this:
+<img src="plugin.audio.denon-dra-f109-remote/resources/assets/screen_04_sleep.png?raw=true">
+
+In addition to the sleep timer the Denon receiver has two alarm clocks:
+a. Everyday alarm clock
+b. Onetime alarm clock 
+
+You can configure it as well.
+<img src="plugin.audio.denon-dra-f109-remote/resources/assets/screen_settings_07_timers2.png?raw=true">
+
+After you have configured the times in configuration menu it is not activated! In order to activate the alarm clock you have to click one of the options in the menu:
+<img src="plugin.audio.denon-dra-f109-remote/resources/assets/screen_06_timers.png?raw=true">
+
+### Smart power settings
+todo
