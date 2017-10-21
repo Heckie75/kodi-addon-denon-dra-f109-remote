@@ -134,7 +134,7 @@ In addition to the sleep timer the Denon receiver has two alarm clocks:
 a. Everyday alarm clock
 b. Onetime alarm clock 
 
-You can configure it as well.
+You can configure it as well. I guess that it is self explaining ;-)
 <img src="plugin.audio.denon-dra-f109-remote/resources/assets/screen_settings_07_timers2.png?raw=true">
 
 After you have configured the times in configuration menu it is not activated! In order to activate the alarm clock you have to click one of the options in the menu:
