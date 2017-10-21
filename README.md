@@ -8,7 +8,7 @@ After installation of this plugin and connecting your receiver you can set input
 * Configurable overview page
 * Input sources
   * List of input sources (physical devices e.g. "Analog 1", logical devices e.g. "Server")
-  * Meaningful names for sources can be given, e.g. "Playstation" (instead of "Analog 1")
+  * Meaningful names for sources can be given, e.g. "TV" (instead of "Analog 1")
   * Unrequired input sources can be hidden
   * Special input source for Kodi with auto-select on playback in Kodi
   * Stop Kodi playback on switch to none-kodi-input source, e.g. radio
@@ -64,4 +64,4 @@ There you should see the addon called "Denon DRA-F109" which is disabled by defa
 
 After you have activated the addon you can click on the "Configure" button in the same dialog. It is required to set the correct serial input device. By default it is `/dev/ttyUSB0`. You must set it to your serial device which is connected to the denon receiver:
 
-<img src="plugin.audio.denon-dra-f109-remote/resources/assets/screen_01_overview.png?raw=true">
+<img src="plugin.audio.denon-dra-f109-remote/resources/assets/screen_settings_01_device.png?raw=true">
