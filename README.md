@@ -58,8 +58,19 @@ After you have restarted Kodi you must activate the plugin explicitly.
 3. Select "User addons"
 4. Select "Music addons"
 
-There you should see the addon called "Denon DRA-F109" which is disabled by default. Open addon's dialog and activate it.
+There you should see the addon called "Denon DRA-F109 Remote" which is disabled by default. Open addon's dialog and activate it.
 
 After you have activated the addon you can click on the "Configure" button in the same dialog. It is required to set the correct serial input device. By default it is `/dev/ttyUSB0`. You must set it to your serial device which is connected to the denon receiver:
 
 <img src="plugin.audio.denon-dra-f109-remote/resources/assets/screen_settings_01_device.png?raw=true">
+
+Now you can leave the settings dialog and go back to Kodi's home screens. In your "music > addons" section there should be a new entry called "Denon DRA-F109 Remote". After you click on it you should see a simular screen as shown above.
+
+If the serial device is not available then you see a "no connection" screen instead:
+<img src="plugin.audio.denon-dra-f109-remote/resources/assets/screen_no_connection.png?raw=true">
+
+In this case repeat and check the installation instructions.
+
+## Features in practice
+
+todo
