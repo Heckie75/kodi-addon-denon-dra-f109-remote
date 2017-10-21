@@ -104,7 +104,19 @@ Select a preset and press enter in order to give a name. As long as you haven't 
 After you have set up some presets the menu in frontend looks like this:
 <img src="plugin.audio.denon-dra-f109-remote/resources/assets/screen_02_presets.png?raw=true">
 
+After you have clicked on a preset the receiver automatically switches to input source "Radio" and tunes to the specific radio preset.
+
 Don't forget to activate the "Radio presets" input source so that it's not hidden.
 
 ### Sound settings
-todo
+In the tab for "Sound settings" you can define if this menu will be displayed at all. 
+<img src="plugin.audio.denon-dra-f109-remote/resources/assets/screen_05_sound.png?raw=true">
+
+There are some settings in order to define which volume levels are available in terms of minimal volume, maximal volume and the steps. 
+<img src="plugin.audio.denon-dra-f109-remote/resources/assets/screen_settings_05_sound.png?raw=true">
+
+My volume settings start at the level 4 and ends at 20. I have choosen steps of 2 so that there are not so many entries. 
+
+<img src="plugin.audio.denon-dra-f109-remote/resources/assets/screen_07_volume.png?raw=true">
+
+Here you probably would like to ask why there are no "volume up" and "volume down" actions. The anser is easy: The denon serial protocol does not seem to know commands for it. Therefore it's simply not possible. 
