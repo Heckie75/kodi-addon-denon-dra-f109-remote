@@ -95,4 +95,15 @@ Back to the "Input sources" tab you see that other input sources are "logical" o
 
 ### Radio presets
 
-todo
+Unfortunately the serial interface of the Denon receiver does not allow to query the names of the radio stations that has been setup. That's why it is required to maintain the names manually in the next tab which is called "Radio presets":
+
+<img src="plugin.audio.denon-dra-f109-remote/resources/assets/screen_settings_04_presets.png?raw=true">
+
+Select a preset and press enter in order to give a name. As long as you haven't given a name explicitly the entry will be hidden in frontend. 
+
+After you have set up some presets the menu in frontend looks like this:
+<img src="plugin.audio.denon-dra-f109-remote/resources/assets/screen_02_presets?raw=true">
+
+
+Don't forget to activate the "Radio presets" input source so that it's not hidden.
+
