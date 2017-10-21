@@ -87,4 +87,12 @@ In section "Physical input sources" you can diable all input sources that are no
 
 <img src="plugin.audio.denon-dra-f109-remote/resources/assets/screen_settings_03_labels.png?raw=true">
 
+Back to the "Input sources" tab you see that other input sources are "logical" onces. That are sources that are related to other Denon devices, e.g. 
+* Denon DCD-F109 is the CD player of the F109-set. You can connect an iPOD or other USB device to it.
+* Denon DNP-F109 is the network player of the F109-set. It has several logical sources, i.e. internet radio,  online music (such as Spotify), music server (DNLA) and also devices connected via USB, e.g. an iPOD again
 
+*Note* that I only have the Denon Stereo receiver but no other devices. Therefore I haven't tested if it really works.  Actually in earlier days I had the DNP-F109 but since for my taste usability and software stability was poor - especially for that money - I decided to buy an INTEL Nuc N2830 and a sound card with optical output for the same money. Best decision ever since a new hobby was born!
+
+### Radio presets
+
+todo
