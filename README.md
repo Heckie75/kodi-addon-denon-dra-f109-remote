@@ -141,4 +141,23 @@ After you have configured the times in configuration menu it is not activated! I
 <img src="plugin.audio.denon-dra-f109-remote/resources/assets/screen_06_timers.png?raw=true">
 
 ### Smart power settings
-todo
+Let's finalize this manual with my favorite: the "Smart power" settings. 
+
+Maybe you would like that the receiver automatically turns on and switches to "Kodi" after you have started to play something in Kodi. You can do it by activating the "Auto switch to Kodi on playback start" setting. 
+
+<img src="plugin.audio.denon-dra-f109-remote/resources/assets/screen_settings_08_smart.png?raw=true">
+
+But in terms of my equipment and "smart home setup" - I have set up a combined audio device in Linux that feeds my bedroom via bluetooth audio too - I don't want that the receiver turns on in the morning when my Kodi timer wakes me up (see my other Kodi plugin [kodi-addon-heckies-timer
+](/Heckie75/kodi-addon-heckies-timer)). Therefore I have defined two settings in order to configure a down-time. In these periods the addon doesn't tell the receiver to turn on automatically when playback starts. 
+
+There are three other settings which are related to behaviour "on playback end", "on idle" and to combination of stopping playback when receiver has been turned off. 
+
+The first setting is "Turn off on playback end". Actually it should be called "on playlist ends". The addon sends the signal to the receiver in order to turn off after the playlist has been finished. Actually I haven't activated this feauture since the receiver turns off and on very often. 
+
+The next setting is much better since it allows to save our environment. If Kodi isn't playing something and hasn't played something for a certain period the addon sends the signal to turn the receiver off. 
+
+Last but not least "Stop playback on turn off" does NOT mean that playback in Kodi stops after you have turned of the receiver but pressing its power button! In means that playback in Kodi stops after you have clicked the "Power off" entry of the addon. 
+
+For all these smart settings an internal state machine is required. For debugging reasons the internal states can be seen in the section "internal state", i.e. "last switch", "last stop" and "Kodi has played" (yes/no).
+
+That's it! I hope that you enjoy this addon. Don't hesitate to give me your feedback!
