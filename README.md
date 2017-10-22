@@ -61,7 +61,7 @@ After you have restarted Kodi you must activate the plugin explicitly.
 
 There you should find the addon called "Denon DRA-F109 Remote" which is disabled by default. Open addon's dialog and activate it.
 
-After you have activated the addon you click the "Configure" button in the same dialog. It is required to set the correct serial input device. By default it is `/dev/ttyUSB0`. In case that you use a Raspberry Pi conntect via GPIO UART pins you should set it to `/dev/ttyAMA0`. You must set it to your serial device which is connected to the denon receiver:
+After you have activated the addon you click the "Configure" button in the same dialog. It is required to set the correct serial input device. By default it is `/dev/ttyUSB0`. In case that you use a Raspberry Pi connected via GPIO UART pins you should set it to `/dev/ttyAMA0`. You must set it to your serial device which is connected to the denon receiver:
 
 <img src="plugin.audio.denon-dra-f109-remote/resources/assets/screen_settings_01_device.png?raw=true">
 
@@ -81,7 +81,7 @@ The first step should be to configure the input sources that you would like to s
 
 <img src="plugin.audio.denon-dra-f109-remote/resources/assets/screen_settings_02_sources.png?raw=true">
 
-In the first section called "Kodi" you can define if the addon should display an "logical" input source for Kodi. By setting "Kodi's input source" you specify via which physical input source your Kodi-PC / Raspberry is connected to the Denon receiver. Physical input sources are: "Analog 1", "Analog 2", "Optical", "CD" or "Network". In my case I have connected it via the optical unput source since I have an external USB sound card with s/pdif output signal.
+In the first section called "Kodi" you can define if the addon should display a "logical" input source for Kodi. By setting "Kodi's input source" you specify via which physical input source your Kodi-PC / Raspberry is connected to the Denon receiver. Physical input sources are: "Analog 1", "Analog 2", "Optical", "CD" or "Network". In my case I have connected it via the optical unput source since I have an external USB sound card with s/pdif output signal.
 
 The next section is about "Radio sources". Here you can define if "FM Radio" and "Digital Radio (DAB)" is displayed as input source. By activating radio presets there will be a folder which contains all radio presets. We will come to it later. Last but not least you can activate the "Tune" menu where you can zap radio presets and toggle between stereo/mono mode. 
 
