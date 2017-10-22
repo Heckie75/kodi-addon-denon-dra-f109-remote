@@ -30,7 +30,7 @@ After installation of this plugin and connecting your receiver you can remotely 
 
 ## Requirements
 
-kodi-addon-denon-dra-f109-remote works only on Linux / Raspberry Pi. It is based on my other Github project [Denon-DRA-F109-Remote](/Heckie75/Denon-DRA-F109-Remote/)
+kodi-addon-denon-dra-f109-remote works only on Linux / Raspberry Pi. It is based on my other Github project [Denon-DRA-F109-Remote](https://github.com/Heckie75/Denon-DRA-F109-Remote/)
 
 From a technical point of view the setup is based on a UART serial interface (e.g. USB -> TTL RS232 5V PL2303 HX Adapter or the UART pins of your Raspberry Pi) which is wired to the receiver's remote connector. See also ["Hacking Denon DRA-F109 remote connector" by Kamil Figiela](https://kfigiela.github.io/2014/06/15/denon-remote-connector/)
 
@@ -121,7 +121,7 @@ My volume settings start at the level 4 and ends at 20. I have choosen steps of 
 
 <img src="plugin.audio.denon-dra-f109-remote/resources/assets/screen_07_volume.png?raw=true">
 
-Here you probably would like to ask why there are no "volume up" and "volume down" actions. The answer is easy: The denon serial protocol does not know commands for it. In addition I just send signals to the receiver and don't query the current state. Take a look at my remarks in [kodi-addon-denon-dra-f109-remote.tgz](/kodi-addon-denon-dra-f109-remote.tgz).
+Here you probably would like to ask why there are no "volume up" and "volume down" actions. The answer is easy: The denon serial protocol does not know commands for it. In addition I just send signals to the receiver and don't query the current state. Take a look at my remarks in [kodi-addon-denon-dra-f109-remote.tgz](https://github.com/kodi-addon-denon-dra-f109-remote.tgz).
 
 ### Alarm clock and sleep timer
 The Denon receiver has it's own alarm clock integrated. Unfortunately the serial protocol does not allow to synchronize the internal clock. Nevertheless, you can setup timers and activate the sleep timer. 
