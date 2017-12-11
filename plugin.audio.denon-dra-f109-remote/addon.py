@@ -569,20 +569,16 @@ def _fill_directory(path):
 
 
 
-def _build_param_string(params):
+def _build_param_string(param, values, current = ""):
 
-    s = ""
-    i = 0
-    for param in params:
-        if i == 0:
-            s = "?"
-        else:
-            s += "&"
+    if values == None:
+        return current
 
-        s += "send=" + param
-        i += 1
+    for v in values:
+        current += "?" if len(current) == 0 else "&"
+        current += param + "=" + v
 
-    return s
+    return current
 
 
 
@@ -595,19 +591,21 @@ def _add_list_item(entry, path):
     item_path = path + "/" + entry["path"]
     item_id = item_path.replace("/", "_")
 
-    param_string = ""
-    if "send" in entry:
-        param_string = _build_param_string(entry["send"])
-
-    if "exec" in entry:
-        if param_string == "":
-            param_string += "?exec=%s" % entry["exec"]
-        else:
-            param_string += "&exec=%s" % entry["exec"]
-
-
     if settings.getSetting("display%s" % item_id) == "false":
         return
+
+    param_string = ""
+    if "send" in entry:
+        param_string = _build_param_string(
+            param = "send", 
+            values = entry["send"], 
+            current = param_string)
+
+    if "exec" in entry:
+        param_string = _build_param_string(
+            param = "exec", 
+            values = entry["exec"], 
+            current = param_string)
 
     if "node" in entry:
         is_folder = True
