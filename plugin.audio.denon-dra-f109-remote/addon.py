@@ -564,7 +564,7 @@ def _fill_directory(path):
     for entry in directory["node"]:
         _add_list_item(entry, path)
 
-    xbmcplugin.endOfDirectory(addon_handle)
+    xbmcplugin.endOfDirectory(addon_handle, succeeded=True, updateListing=True, cacheToDisc=False)
 
 
 
@@ -646,16 +646,17 @@ def _check_hardware():
                                 url="plugin://" + __PLUGIN_ID__,
                                 isFolder=False)
 
-    xbmcplugin.endOfDirectory(addon_handle)
+    xbmcplugin.endOfDirectory(addon_handle, succeeded=True, updateListing=True, cacheToDisc=False)
 
     return False
 
 
 
 
-def _call_denon(send_params):
+def _call_denon(send_params, url_params):
 
-    xbmc.executebuiltin("Notification(Send to Denon, " + " ".join(send_params) + ", 5000, " + addon_dir + "/icon.png)")
+    if "silent" not in url_params:
+        xbmc.executebuiltin("Notification(Send to Denon, " + " ".join(send_params) + ", 5000, " + addon_dir + "/icon.png)")
 
     params = [settings.getSetting("device")]
     params += send_params
@@ -674,6 +675,6 @@ if __name__ == "__main__":
             xbmc.executebuiltin(url_params["exec"][0])
 
         if "send" in url_params:
-            _call_denon(url_params["send"])
+            _call_denon(url_params["send"], url_params)
         else:
             _fill_directory(path)
