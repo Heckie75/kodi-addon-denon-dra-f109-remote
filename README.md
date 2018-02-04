@@ -40,7 +40,7 @@ apt install python-serial
 ```
 
 ## Install kodi plugin
-First of all download the plugin archive file, i.e. [kodi-addon-denon-dra-f109-remote.tgz](/kodi-addon-denon-dra-f109-remote.tgz)
+First of all download the plugin archive file, i.e. [kodi-addon-denon-dra-f109-remote.tgz](/kodi-addon-denon-dra-f109-remote.zip)
 
 You must extract this archive in the Kodi plugin folder
 ```

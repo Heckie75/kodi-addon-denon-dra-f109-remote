@@ -564,7 +564,7 @@ def _fill_directory(path):
     for entry in directory["node"]:
         _add_list_item(entry, path)
 
-    xbmcplugin.endOfDirectory(addon_handle, succeeded=True, updateListing=True, cacheToDisc=False)
+    xbmcplugin.endOfDirectory(addon_handle)
 
 
 
@@ -646,7 +646,7 @@ def _check_hardware():
                                 url="plugin://" + __PLUGIN_ID__,
                                 isFolder=False)
 
-    xbmcplugin.endOfDirectory(addon_handle, succeeded=True, updateListing=True, cacheToDisc=False)
+    xbmcplugin.endOfDirectory(addon_handle)
 
     return False
 
@@ -669,6 +669,7 @@ if __name__ == "__main__":
 
     path = urlparse.urlparse(sys.argv[0]).path
     url_params = urlparse.parse_qs(sys.argv[2][1:])
+    xbmc.log(path, xbmc.LOGNOTICE)
 
     if _check_hardware():
         if "exec" in url_params:
