@@ -7,6 +7,8 @@
     <setting label="Kodi" type="lsep" />
     <setting label="Kodi" type="bool" id="display_kodi" default="true" />
     <setting label="Kodi's input source" type="enum" id="kodi_input_source" values="Analog 1|Analog 2|Optical|CD|Network" default="0" />
+    <setting label="Switch Pulse Audio sink" type="enum" id="kodi_alsa_sink" values="off|ALSA Sink 1|ALSA Sink 2||ALSA Sink 3|ALSA Sink 4|ALSA Sink 5" default="0" />
+    <setting label="requires addon &quot;Pulse-Audio Sink Setter&quot;" type="text" id="kodi_alsa_sink_hint" enable="false" subsetting="true" />
 
     <setting label="Radio sources" type="lsep" />
     <setting label="FM Radio" type="bool" id="display_fm" default="true" />

@@ -16,6 +16,8 @@ SOURCES = [["analog", "1"],
            ["cd"],
            ["net"]]
 
+PLUGIN_PASINK = "plugin.audio.pasink"
+
 settings = xbmcaddon.Addon(id=__PLUGIN_ID__);
 addon_handle = int(sys.argv[1])
 addon_dir = xbmc.translatePath( settings.getAddonInfo('path') )
@@ -665,15 +667,33 @@ def _call_denon(send_params, url_params):
 
 
 
+def _handle_audio_sink():
+
+    sink = int(settings.getSetting("kodi_alsa_sink")) - 1
+    if sink == -1:
+        return
+
+    try:
+        pa_settings = xbmcaddon.Addon(id=PLUGIN_PASINK);
+	alsa_id = pa_settings.getSetting("alsa_id_%i" % sink)
+	xbmc.executebuiltin('PlayMedia(%s)' % ("plugin://" + PLUGIN_PASINK + "/" + alsa_id + "?action=switch"))
+    except:
+        return
+
+
+
+
 if __name__ == "__main__":
 
     path = urlparse.urlparse(sys.argv[0]).path
     url_params = urlparse.parse_qs(sys.argv[2][1:])
-    xbmc.log(path, xbmc.LOGNOTICE)
 
     if _check_hardware():
         if "exec" in url_params:
             xbmc.executebuiltin(url_params["exec"][0])
+
+	if path == "/kodi":
+            _handle_audio_sink()
 
         if "send" in url_params:
             _call_denon(url_params["send"], url_params)
